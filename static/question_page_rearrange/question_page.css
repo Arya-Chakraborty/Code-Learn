@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  /* Create two equal columns that sits next to each other */
+  .column {
+    flex: 50%;
+    padding: 30px;
+  }
+
+  .screen{
+      width: 100%;
+      height: 275px;
+      background-color: rgb(33, 53, 78);
+      border-radius: 10px;
+      border:5px solid rgb(206, 206, 206);
+  }
+
+  textarea{
+    border: 4px solid rgb(109, 107, 107);
+    border-radius: 25px;
+    padding: 10px 20px;
+    background-color: rgb(241, 240, 240);
+  }

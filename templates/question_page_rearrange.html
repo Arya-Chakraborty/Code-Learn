@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Ajax jquery css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet">
+    <!-- tailwind css -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- static css -->
+    <link rel="stylesheet" href="/static/question_page_rearrange/question_page.css">
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/static/question_page_rearrange/table/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/question_page_rearrange/table/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/question_page_rearrange/table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/question_page_rearrange/table/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/question_page_rearrange/table/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/question_page_rearrange/table/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/static/question_page_rearrange/table/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/static/question_page_rearrange/table/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- ajax script js -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+    <!--===============================================================================================-->	
+    <script src="/static/question_page_rearrange/page/table/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+	<script src="/static/question_page_rearrange/page/table/vendor/bootstrap/js/popper.js"></script>
+	<script src="/static/question_page_rearrange/page/table/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+	<script src="/static/question_page_rearrange/page/table/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+	<script src="/static/question_page_rearrange/page/table/js/main.js"></script>
+<div class="row">
+    <div class="column" style="font-family: Helvetica, sans-serif;">
+        <h1 style="color: rgb(255, 255, 255); "> {{ question_statement }} </h1><br>
+        <h5 style="color: rgb(212, 212, 212); "> {{ question_description }} </h5>
+        <br><br>
+        <button type="button" class="btn btn-success" id="test_code">Test Your Code</button>
+        <a href= "/problems/rearrange/{{ go_back_url }}"><button type="button" class="btn btn-danger ml-4" >Go Back To Problems Page</button></a>
+        <button type="button" class="btn btn-info ml-4" id="notepad_button">Show Notepad</button>
+        <button type="button" class="btn btn-warning ml-4" id="submit_button">Submit</button><br><br><br><br>
+        <div class="screen">
+            <br>
+            <h1 style="text-align:center; color:rgb(248, 233, 94)">Result</h1><br><br><br>
+            <center><div class="spinner-border text-success" role="status" id="spinner">
+                <span class="visually-hidden">Loading...</span>
+              </div></center>
+            <h3 style="text-align:center; color:rgb(245, 245, 245)" id="ans_message">Nothing Yet!</h3>
+            <center><img src="/static/question_page_rearrange/tick.png" width="100" id="correct_answer" >
+            <img src="/static/question_page_rearrange/cross.png" width="100" id="wrong_answer"></center>
+        </div>
+    </div>
+    <div class="column">
+    <div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<table id="table1" name="table1">
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Sl No.</th>
+								<th class="column2">Code</th>
+							</tr>
+						</thead>
+                            <tbody style="cursor: all-scroll;">
+                                {% for row in table %}
+                                    <tr>
+                                        <td>{{ row[0] }}</td>
+                                        <td><pre>{{ row[1][-1] }}</pre></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table><br><br>
+                        <textarea id="notepad" rows = "5" cols = "60" name = "notepad" placeholder="Write Notes Here..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table id="temp_table" name="temp_table">
+    <thead>
+        <tr>
+        <th>Sl No</th>
+        <th style="text-align: center;">Code</th>
+        </tr>
+    </thead>
+    <tbody style="border: 3px solid gray; cursor: all-scroll;">
+    {% for row in new_table %}
+    <tr>
+    <td>{{ row[0] }}</td>
+    <td><pre>{{ row[1] }}</pre></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div style="display:none;" id= 'code'>{{ code }}</div>
+<div style="display:none;" id= 'solved_key'>{{ new_key }}</div>
+<div style="display:none;" id= 'encrpyted_code'>{{ encrypted_code }}</div>
+<div style="display:none;" id= 'path' class="/problems/rearrange/{{ go_back_url }}">{{ prob_id }}</div>
+<!-- static js -->
+<script type="text/javascript" src="/static/question_page_rearrange/question_page.js"></script>
+</body>
+</html>

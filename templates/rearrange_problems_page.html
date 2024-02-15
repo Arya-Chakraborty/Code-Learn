@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Table 03</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="/static/rearrange_problems_page_table/rearrange_problems_table/css/style.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+	</head>
+	<body style="background-color: rgb(33, 53, 78);">
+        <header class="text-gray-600 body-font">
+            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+              <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <img src="/static/logo.png" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="text-white rounded-full" viewBox="0 0 24 24" style="width:70px; height:70px;">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl" style="color:white;">Code.Learn</span>
+              </a>
+              <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-white" href='/problems/{{ url }}' style="cursor: pointer; color:white;">Home</a>
+                <a class="mr-5 hover:text-white" href='/problems/{{ url }}' style="cursor: pointer; color:white;">About</a>
+                <a class="mr-5 hover:text-white" href='/problems/{{ url }}' style="cursor: pointer; color:white;">Problems</a>
+                <a class="mr-5 hover:text-white" href='/problems/{{ url }}' style="cursor: pointer; color:white;">Contact</a>
+              </nav>
+              <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">{{ name }}
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+          </header>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"> 
+					<h4 class="text-center mb-4" style="color: white;">Choose A Problem</h4>
+					<div class="table-wrap">
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>Problem ID</th>
+					        <th>Statement</th>
+					        <th>Status</th>
+					        <th>Solve It!</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+                            {% for i in re_problems %}
+					      <tr>
+					        <th scope="row" class="scope" > {{ i[0] }} </th>
+					        <td> {{ i[1] }} </td>
+								{% if i[0] not in probs_solved %}
+					        		<td style="display:inline-block;"><img src="/static/question_page_rearrange/cross.png" alt="" style="width:15px; height:15px;display:inline-block;"> Not Completed </td>
+								{% endif %}
+								{% if i[0] in probs_solved %}
+									<td style="display:inline-block;"><img src="/static/question_page_rearrange/tick.png" alt="" style="width:15px; height:15px;display:inline-block;"> Completed </td>
+								{% endif %}
+							<td><a href="/problems/rearrange/{{ url }}&pid={{ i[0] }}" class="btn btn-primary" style="border-radius: 10px;">Let's Go!</a></td>
+					      </tr>
+					      {% endfor %}
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+  <script src="/static/rearrange_problems_page_table/rearrange_problems_table/js/jquery.min.js"></script>
+  <script src="/static/rearrange_problems_page_table/rearrange_problems_table/js/popper.js"></script>
+  <script src="/static/rearrange_problems_page_table/rearrange_problems_table/js/bootstrap.min.js"></script>
+  <script src="/static/rearrange_problems_page_table/rearrange_problems_table/js/main.js"></script>
+
+	</body>
+</html>
+
